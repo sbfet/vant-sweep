@@ -1,0 +1,32 @@
+// ------------------------------------------------------------------------------
+// name: index
+// author: mudas( fnd.cool )
+// created: 2021/5/8
+// ------------------------------------------------------------------------------
+
+@import '../style/var';
+@import "../style/mixins/bem";
+
+@include b(category-title){
+  height: $--category-title-height;
+  display: flex;
+  align-items: center;
+
+  &__left, &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__left {
+    justify-content: right;
+  }
+
+  &__right {
+    justify-content: left;
+  }
+
+  &__image {
+    max-width: $--category-icon-width;
+    max-height: $--category-icon-height
+  }
+}

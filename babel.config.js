@@ -1,3 +1,4 @@
+
 module.exports = {
-  presets: ['@vant/cli/preset'],
+  presets: ['@vant/cli/preset']
 };

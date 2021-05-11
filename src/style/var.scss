@@ -1,0 +1,125 @@
+/* Theme Variables */
+
+// Assets path
+// ----------------------------------------
+$--assets-path: '~@/assets';
+
+// Transition
+// ----------------------------------------
+$--all-transition: all .3s cubic-bezier(.645, .045, .355, 1) !default;
+$--fade-transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
+$--fade-linear-transition: opacity 200ms linear !default;
+$--md-fade-transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
+$--border-transition-base: border-color .2s cubic-bezier(.645, .045, .355, 1) !default;
+$--color-transition-base: color .2s cubic-bezier(.645, .045, .355, 1) !default;
+
+// Color
+// ----------------------------------------
+$--color-primary: #409eff !default;
+$--color-white: #fff !default;
+$--color-black: #000 !default;
+$--color-success: #67c23a !default;
+$--color-warning: #e6a23c !default;
+$--color-danger: #f56c6c !default;
+$--color-info: #909399 !default;
+
+/// NeutralColor
+$--color-neutral-1: #303133 !default;
+$--color-neutral-2: #606266 !default;
+$--color-neutral-3: #909399 !default;
+$--color-neutral-4: #c0c4cc !default;
+$--color-neutral-5: #dcdfe6 !default;
+$--color-neutral-6: #e4e7ed !default;
+$--color-neutral-7: #ebeef5 !default;
+$--color-neutral-8: #f2f6fc !default;
+
+/// Text
+$--color-text-primary: $--color-neutral-1 !default;
+$--color-text-regular: $--color-neutral-2 !default;
+$--color-text-secondary: $--color-neutral-3 !default;
+$--color-text-placeholder: $--color-neutral-4 !default;
+
+/// Border
+$--border-color-base: $--color-neutral-5 !default;
+$--border-color-light: $--color-neutral-6 !default;
+$--border-color-lighter: $--color-neutral-7 !default;
+$--border-color-extra-light: $--color-neutral-8 !default;
+
+// Padding
+// ----------------------------------------
+$--padding-basic: 4px !default;
+
+$--padding-extra-small: $--padding-basic * 2 !default;
+$--padding-small: $--padding-basic * 3 !default;
+$--padding-base: $--padding-basic * 4 !default;
+$--padding-large: $--padding-basic * 6 !default;
+$--padding-extra-large: $--padding-basic * 8 !default;
+
+// Margin
+// ----------------------------------------
+$--margin-extra-small: $--padding-extra-small !default;
+$--margin-small: $--padding-small !default;
+$--margin-base: $--padding-base !default;
+$--margin-large: $--padding-large !default;
+$--margin-extra-large: $--padding-extra-large !default;
+
+// z-index
+// ----------------------------------------
+$--index-normal: 1 !default;
+$--index-top: 1000 !default;
+$--index-popper: 2000 !default;
+
+// Background
+// ----------------------------------------
+$--background-color-base: #f8f8fa !default;
+$--background-color-light: mix($--color-white, $--background-color-base, 58%);
+
+// Box-shadow
+// ----------------------------------------
+$--box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
+$--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12) !default;
+$--box-shadow-light: 0 2px 6px 0 rgba(0, 0, 0, 0.06) !default;
+
+// Border
+// ----------------------------------------
+$--border-width-base: 1px !default;
+$--border-style-base: solid !default;
+$--border-color-hover: $--color-text-placeholder !default;
+$--border-base: $--border-width-base $--border-style-base $--border-color-base !default;
+
+$--border-radius-small: 2px !default;
+$--border-radius-base: 4px !default;
+$--border-radius-large: 8px !default;
+$--border-radius-circle: 100% !default;
+$--border-radius-zero: 0 !default;
+
+// Typography
+// ----------------------------------------
+/// font-family
+$--base-font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif !default;
+$--integer-font-family: Avenir-Heavy, PingFang SC, Helvetica Neue, Arial, sans-serif;
+
+/// font-size
+$--font-size-extra-large: 20px !default;
+$--font-size-large: 18px !default;
+$--font-size-medium: 16px !default;
+$--font-size-base: 14px !default;
+$--font-size-small: 12px !default;
+$--font-size-extra-small: 10px !default;
+
+/// font-weight
+$--font-weight-primary: normal !default;
+$--font-weight-secondary: 100 !default;
+$--font-weight-bold: 550 !default;
+
+/// line-height
+$--font-line-height-primary: 1.6 !default;
+$--font-line-height-secondary: 1.2 !default;
+
+$--font-color-disabled-base: #bbb !default;
+
+// CategoryTitle
+// ----------------------------------------
+$--category-title-height: 45px !default;
+$--category-icon-width: $--category-title-height !default;
+$--category-icon-height: $--category-title-height !default;
