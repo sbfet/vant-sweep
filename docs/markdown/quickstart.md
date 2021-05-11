@@ -85,7 +85,7 @@ Vue.use(VantSweep);
 
 ### Rem 适配
 
-Vant 中的样式默认使用`px`作为单位，如果需要使用`rem`单位，推荐使用以下两个工具：
+vant-sweep 中的样式默认使用`px`作为单位，如果需要使用`rem`单位，推荐使用以下两个工具：
 
 - [postcss-relaxed-unit](https://github.com/youncccat/postcss-relaxed-unit) 是一款 postcss 插件，用于 css 单位转换
 - [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem) 是一款 postcss 插件，用于将单位转化为 rem

@@ -19,7 +19,7 @@ vant-sweeep 使用了 scss 对样式进行预处理，并内置了一些样式�
 
 ### 步骤一 引入样式源文件
 
-定制主题时，需要引入组件对应的 Less 样式文件，支持按需引入和手动引入两种方式。
+定制主题时，需要引入组件对应的 scss 样式文件，支持按需引入和手动引入两种方式。
 
 #### 按需引入样式（推荐）
 
@@ -31,12 +31,11 @@ module.exports = {
     [
       'import',
       {
-        libraryName: 'vant',
+        libraryName: '@sbfe/vant-sweep',
         libraryDirectory: 'es',
-        // 指定样式路径
-        style: (name) => `${name}/style/less`,
+        style: (name) => `${name}/style/scss`,
       },
-      'vant',
+      '@sbfe/vant-sweep',
     ],
   ],
 };
@@ -46,42 +45,36 @@ module.exports = {
 
 ```js
 // 引入全部样式
-import 'vant/lib/index.less';
+import '@sbfe/vant-sweep/lib/index.scss';
 
 // 引入单个组件样式
-import 'vant/lib/button/style/less';
+import '@sbfe/vant-sweep/lib/category-title/style/scss';
 ```
 
 ### 步骤二 修改样式变量
 
-使用 Less 提供的 [modifyVars](http://lesscss.org/usage/#using-less-in-the-browser-modify-variables) 即可对变量进行修改，下面是参考的 webpack 配置。
+vant-sweep 不支持使用 less 类似的 [modifyVars](http://lesscss.org/usage/#using-less-in-the-browser-modify-variables) 功能。 需要借助 scss `default` 语法来进行变量覆盖。
+
+```scss
+// src/css/custom.scss
+// ----------------------------------------
+$--color-primary: #f56c6c;
+```
 
 ```js
 // webpack.config.js
 module.exports = {
-  rules: [
-    {
-      test: /\.less$/,
-      use: [
-        // ...其他 loader 配置
-        {
-          loader: 'less-loader',
-          options: {
-            // 若使用 less-loader@5，请移除 lessOptions 这一级，直接配置选项。
-            lessOptions: {
-              modifyVars: {
-                // 直接覆盖变量
-                'text-color': '#111',
-                'border-color': '#eee',
-                // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
-                hack: `true; @import "your-less-file-path.less";`,
-              },
-            },
-          },
-        },
-      ],
-    },
-  ],
+  module: {
+    rules: [{
+      test: /\.scss$/,
+      use: [{
+        loader: "sass-loader",
+        options: {
+          prependData: `\n@import "src/css/custom.scss";\n`
+        }
+      }]
+    }]
+  }
 };
 ```
 
@@ -92,19 +85,10 @@ module.exports = {
 module.exports = {
   css: {
     loaderOptions: {
-      less: {
-        // 若使用 less-loader@5，请移除 lessOptions 这一级，直接配置选项。
-        lessOptions: {
-          modifyVars: {
-            // 直接覆盖变量
-            'text-color': '#111',
-            'border-color': '#eee',
-            // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
-            hack: `true; @import "your-less-file-path.less";`,
-          },
-        },
-      },
-    },
-  },
+      scss: {
+        prependData: `\n@import "src/css/custom.scss";\n`
+      }
+    }
+  }
 };
 ```

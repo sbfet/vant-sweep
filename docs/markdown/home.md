@@ -19,14 +19,14 @@
 - 支持国际化
 
 ### 快速上手
-请参考[快速上手](#/zh-CN/quickstart)章节。
+请参考[快速上手](#/quickstart)章节。
 
 ### 浏览器支持
 现代浏览器以及 Android 4.0+, iOS 8.0+。
 
 ### 链接
-- [意见反馈](https://github.com/sbfet/vant-sweep/issues)
-- [更新日志](#/zh-CN/changelog)
+- [问题反馈](https://github.com/sbfet/vant-sweep/issues)
+- [更新日志](https://github.com/sbfet/vant-sweep/releases)
 
 ### 开源协议
 本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源

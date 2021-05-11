@@ -26,5 +26,17 @@ module.exports = function() {
     entry: {
       'site-mobile': ['./docs/site/mobile']
     }
+
+    // module: {
+    //   rules: [{
+    //     test: /\.scss$/,
+    //     use: [{
+    //       loader: "sass-loader",
+    //       options: {
+    //         prependData: `\n@import "src/style/a.scss";\n`
+    //       }
+    //     }]
+    //   }]
+    // }
   };
 };

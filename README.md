@@ -26,14 +26,14 @@ import 'vant/lib/index.css';
 Vue.use(Button);
 ```
 
-vant-sweep 也支持按需引入、CDN 引入等方式，详细说明见 [快速上手](https://sbfet.github.io/vant-sweep#/zh-CN/quickstart).
+vant-sweep 也支持按需引入、CDN 引入等方式，详细说明见 [快速上手](https://sbfet.github.io/vant-sweep#/quickstart).
 
 ### 浏览器支持
 现代浏览器以及 Android 4.0+, iOS 8.0+。
 
 ### 链接
-- [意见反馈](https://github.com/sbfet/vant-sweep/issues)
-- [更新日志](#/zh-CN/changelog)
+- [问题反馈](https://github.com/sbfet/vant-sweep/issues)
+- [更新日志](https://github.com/sbfet/vant-sweep/releases)
 
 ### 开源协议
 本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源
