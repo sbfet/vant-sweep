@@ -13,10 +13,32 @@ import StepperTheme from './stepper';
 const [createComponent, bem] = createNamespace('goods-item');
 
 export default createComponent({
+
+  data() {
+    return {
+      buyCount: 0
+    };
+  },
+
   props: {
     ...GoodsData,
     ...GoodsItemData,
     ...routeProps
+  },
+
+  watch: {
+    num: {
+      immediate: true,
+      handler(val) {
+        this.buyCount = val || 0;
+      }
+    },
+
+    buyCount: {
+      handler(val) {
+        this.onChange(val, { name: this.id });
+      }
+    }
   },
 
   // --------------------------------------------------------------------------
@@ -38,6 +60,10 @@ export default createComponent({
 
     onChange(value, detail) {
       this.$emit('change', value, detail);
+    },
+
+    onCartIconClick(value) {
+      this.buyCount = value;
     }
   },
 
@@ -147,7 +173,7 @@ export default createComponent({
     // 数量控制
     // ----------------------------------------
     const { id, num, min, max, step, showStep, otherNum, soldout, cartIcon, showNum } = this;
-    const { onChange } = this;
+    const { buyCount, onChange, onCartIconClick } = this;
 
     // 'col2', 'col3' 2列、3列风格不显示数量控制器（空间位置不足）
     const canShowStepper = showStep && !soldout && ['col2', 'col3'].indexOf(theme) === -1;
@@ -155,25 +181,30 @@ export default createComponent({
     // block、block2 通栏风格不显示加购数量，由控制器管理
     const canShowNum = showNum && ['block', 'block2'].indexOf(theme) === -1;
 
+    // 当数量等于 0 时，隐藏输入数字和减按钮
+    const isCanReduce = buyCount > 0;
+
     // 当显示数量控制器时
     function GoodsStepper() {
       if (canShowStepper) {
         return (
-          <div class={[bem('detail-step')]} onClick={e=>e.stopPropagation()}>
+          <div class={[bem('detail-step')]} onClick={e => e.stopPropagation()}>
             <Stepper name={id}
-                     value={num}
+                     value={buyCount}
                      min={min}
                      max={max}
                      step={step}
                      default-value={0}
+                     show-minus={isCanReduce}
+                     show-input={isCanReduce}
                      {...{ attrs: { ...StepperTheme[theme] } }}
-                     onChange={onChange}/>
+                     onChange={(value, detail) => onCartIconClick(value)}/>
           </div>
         );
       }
       else if (['col2', 'col3'].indexOf(theme) !== -1) {
         return (
-          <Icon class={bem('stepper-icon')} name={cartIcon}/>
+          <Icon class={bem('stepper-icon')} name={cartIcon} onClick={() => onCartIconClick(buyCount + 1)}/>
         );
       }
     }

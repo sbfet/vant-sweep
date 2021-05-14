@@ -11,18 +11,14 @@ export default {
     integer: true,
     'button-size': 22,
     'input-width': 22,
-    'disable-input': true,
-    'show-minus': true,
-    'show-input': true
+    'disable-input': true
   },
   col1: {
     theme: 'round',
     integer: true,
     'button-size': 22,
     'input-width': 22,
-    'disable-input': true,
-    'show-minus': true,
-    'show-input': true
+    'disable-input': true
   },
   col2: {
     theme: 'round',
@@ -38,26 +34,20 @@ export default {
     integer: true,
     'button-size': 22,
     'input-width': 22,
-    'disable-input': true,
-    'show-minus': false,
-    'show-input': false
+    'disable-input': true
   },
   block: {
     theme: 'round',
     integer: true,
     'button-size': 22,
     'input-width': 22,
-    'disable-input': true,
-    'show-minus': true,
-    'show-input': true
+    'disable-input': true
   },
   block2: {
     theme: 'round',
     integer: true,
     'button-size': 22,
     'input-width': 22,
-    'disable-input': true,
-    'show-minus': true,
-    'show-input': true
+    'disable-input': true
   }
 };
