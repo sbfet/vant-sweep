@@ -31,15 +31,14 @@
     "*.{vue,css,less,scss}": "stylelint --fix"
   },
   "peerDependencies": {
-    "@mudas/util": "^0.0.10",
+    "@mudas/util": "0.0.11",
     "vant": "^2.12.16"
   },
   "devDependencies": {
-    "@mudas/util": "^0.0.10",
+    "@mudas/util": "0.0.11",
     "@vant/cli": "^2.10.2",
     "babel-plugin-import": "^1.13.0",
     "core-js": "^3.12.0",
-    "currency.js": "^2.0.3",
     "dayjs": "^1.10.4",
     "hash.js": "^1.1.7",
     "vant": "^2.12.16",

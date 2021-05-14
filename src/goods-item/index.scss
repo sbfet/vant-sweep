@@ -1,0 +1,292 @@
+// ------------------------------------------------------------------------------
+// name: index
+// author: mudas( fnd.cool )
+// created: 2021/5/11
+// ------------------------------------------------------------------------------
+
+@import '../style/var';
+@import "../style/mixins/bem";
+@import "../style/mixins/ellipsis";
+
+@include b(goods-item) {
+  width: 0;
+  user-select: none;
+
+  &--soldout {
+    filter: grayscale(90%);
+    opacity: .5;
+  }
+
+  &__soldout {
+    font-size: $--font-size-base;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    color: $--goods-desc-color;
+    padding: $--padding-base $--padding-small;
+    white-space: nowrap;
+    background: fade($--color-white, 60%);
+    transform: translate(-50%, -50%);
+    border-radius: $--border-radius-max;
+    box-shadow: $--box-shadow-dark;
+  }
+
+  &__thumb {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background-color: $--goods-thumb-background-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-icon {
+      font-size: 48px;
+      color: $--color-warning;
+    }
+
+    &-tag {
+      position: absolute;
+      bottom: $--goods-thumb-bottom;
+      opacity: $--goods-tag-opacity;
+      white-space: nowrap; // 保持角标文字不换行
+
+      &--left {
+        left: 0;
+        padding-right: 0.7em;
+
+        &,
+        &::after {
+          border-radius: 0 $--border-radius-max $--border-radius-max 0;
+        }
+      }
+
+      &--center {
+        left: 50%;
+        transform: translateX(-50%);
+        padding-left: 0.7em;
+        padding-right: 0.7em;
+
+        &,
+        &::after {
+          border-radius: $--border-radius-max;
+        }
+      }
+
+      &--right {
+        right: 0;
+        padding-left: 0.7em;
+
+        &,
+        &::after {
+          border-radius: $--border-radius-max 0 0 $--border-radius-max;
+        }
+      }
+    }
+  }
+
+  &__num-tag {
+    position: absolute;
+    right: $--goods-thumb-tag-dis;
+    top: $--goods-thumb-tag-dis;
+    line-height: 1;
+    transform: translateY(-50%);
+
+    .van-tag {
+      opacity: $--goods-tag-opacity;
+      margin-left: 2px;
+    }
+  }
+
+  &__detail {
+    width: 100%;
+    flex: 1;
+    min-height: 40px;
+    padding: $--goods-detail-padding;
+    box-sizing: border-box;
+    font-size: $--goods-font-size;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    //overflow: hidden;
+
+    &-title {
+      font-size: $--font-size-base;
+      font-weight: $--font-weight-bold;
+      max-height: $--goods-title-height;
+      line-height: $--goods-title-line-height;
+
+      @include ellipsis();
+    }
+
+    &-desc {
+      font-size: $--font-size-small;
+      color: $--goods-desc-color;
+      line-height: $--goods-desc-line-height;
+
+      @include multi-ellipsis(2);
+    }
+
+    &-tags {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+
+      &--red {
+        font-size: $--font-size-extra-small;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 4px;
+        color: $--color-danger;
+        border: 1px solid $--color-danger;
+        border-radius: 2px;
+        line-height: 1;
+      }
+
+      &--red + &--red {
+        margin-left: 2px;
+      }
+    }
+
+    &-bottom {
+      position: relative;
+      line-height: $--goods-bottom-line-height;
+      display: flex;
+      flex: 1;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &-stepper {
+      color: $--goods-carticon-color;
+      font-size: 25px;
+    }
+
+  }
+
+  &--round {
+    .van-grid-item__content {
+      border-radius: $--border-radius-large;
+
+      .sb-goods-item__thumb {
+        overflow: hidden;
+        border-radius: $--border-radius-large $--border-radius-large 0 0;
+      }
+    }
+
+    &.sb-goods-item--transparent {
+      .van-grid-item__content {
+        .sb-goods-item__thumb {
+          border-radius: $--border-radius-large;
+        }
+
+        .sb-goods-item__detail-trans {
+          border-radius: 0 0 $--border-radius-large $--border-radius-large;
+        }
+      }
+    }
+  }
+
+  &--transparent {
+    .sb-goods-item__thumb-tag {
+      bottom: $--goods-thumb-bottom + 40px;
+    }
+  }
+
+  &--shadow {
+    .van-grid-item__content {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12);
+    }
+  }
+
+  .van-grid-item__content {
+    position: relative;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $--goods-background-color;
+    //overflow: hidden;
+  }
+
+  // 半透明标题风格
+  // --------------------------------------------------
+  &__detail-trans {
+    color: $--goods-title-bar-color;
+    position: absolute;
+    bottom: 0;
+    min-height: $--goods-title-bar-height;
+    width: 100%;
+    background-color: $--goods-title-bar-background;
+    box-sizing: border-box;
+    padding: 0 $--goods-title-bar-padding;
+
+    display: flex;
+    align-items: center;
+
+    .sb-goods-item__detail-title {
+      flex: 1;
+    }
+
+    &-price {
+      padding-left: $--goods-title-bar-padding;
+
+      .sb-goods-item__price {
+        color: $--goods-price-color;
+      }
+    }
+  }
+
+  // 会员价
+  // --------------------------------------------------
+
+  &__member {
+    &-price, &-symbol {
+      display: inline-block;
+      font-size: $--goods-price-font-size;
+      font-family: $--goods-price-font-family;
+      text-align: center;
+      padding: 1px $--padding-base 0;
+      min-width: 30px;
+    }
+
+    &-price {
+      color: $--goods-member-color;
+      border-radius: $--border-radius-base 0 0 $--border-radius-base;
+      background: $--goods-member-background;
+    }
+
+    &-symbol {
+      color: $--goods-member-background;
+      border-radius: 0 $--border-radius-base $--border-radius-base 0;
+      background: $--goods-member-color;
+    }
+  }
+
+  // 原价、优惠价
+  // --------------------------------------------------
+
+  &__price {
+    display: inline-block;
+    color: $--goods-price-color;
+    font-weight: $--font-weight-bold;
+    font-size: $--goods-price-font-size;
+    font-family: $--goods-price-font-family;
+
+    &-integer {
+      font-size: 1.5em;
+    }
+
+    &-decimal {
+    }
+  }
+
+  &__origin-price {
+    display: inline-block;
+    margin-left: 5px;
+    color: $--goods-origin-price-color;
+    font-size: $--goods-price-font-size;
+    text-decoration: line-through;
+  }
+}

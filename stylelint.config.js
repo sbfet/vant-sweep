@@ -13,6 +13,8 @@ module.exports = {
     'value-keyword-case': null,
     'at-rule-no-unknown': null,
     'at-rule-semicolon-space-before': null,
-    'function-name-case': null
+    'function-name-case': null,
+    'declaration-empty-line-before': null,
+    'block-no-empty': null
   }
 };

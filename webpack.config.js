@@ -16,6 +16,7 @@ module.exports = function() {
   }
 
   return {
+    target: 'web',
     resolve: {
       extensions: ['.js', '.vue', '.json', '.scss'],
       alias: {
@@ -25,18 +26,20 @@ module.exports = function() {
 
     entry: {
       'site-mobile': ['./docs/site/mobile']
-    }
+    },
 
-    // module: {
-    //   rules: [{
-    //     test: /\.scss$/,
-    //     use: [{
-    //       loader: "sass-loader",
-    //       options: {
-    //         prependData: `\n@import "src/style/a.scss";\n`
-    //       }
-    //     }]
-    //   }]
-    // }
+    module: {
+      rules: [
+        // {
+        //   test: /\.scss$/,
+        //   use: [{
+        //     loader: 'sass-loader',
+        //     options: {
+        //       prependData: `\n@import "src/style/a.scss";\n`
+        //     }
+        //   }]
+        // }
+      ]
+    }
   };
 };

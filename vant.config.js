@@ -51,6 +51,15 @@ module.exports = {
             title: 'Style 内置样式'
           }
         ]
+      },
+      {
+        title: '业务组件',
+        items: [
+          {
+            path: 'goods',
+            title: 'Goods 商品区块'
+          }
+        ]
       }
     ]
   }

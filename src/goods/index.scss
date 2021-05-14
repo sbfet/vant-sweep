@@ -1,0 +1,86 @@
+// ------------------------------------------------------------------------------
+// name: index
+// author: mudas( fnd.cool )
+// created: 2021/5/11
+// ------------------------------------------------------------------------------
+
+@import '../style/var';
+@import "../style/mixins/bem";
+
+@include b(goods) {
+  font-size: inherit;
+
+  &__col1, &__base {
+    .sb-goods-item {
+      &__detail-title {
+        font-size: $--font-size-medium;
+      }
+
+      &__soldout {
+        font-size: $--font-size-medium;
+        padding: $--padding-small $--padding-large;
+      }
+    }
+  }
+
+  &__col2 {
+    .sb-goods-item {
+
+      &__thumb {
+        height: 170px;
+      }
+
+      &__detail {
+        min-height: 60px;
+      }
+
+      &__detail-title {
+        font-size: $--font-size-base;
+      }
+
+      &__soldout {
+        padding: $--padding-extra-small $--padding-base;
+      }
+    }
+  }
+
+  &__col3 {
+    .sb-goods-item {
+      &__thumb {
+        height: 110px;
+      }
+
+      &__detail {
+        min-height: 50px;
+      }
+
+      &__detail-title {
+        font-size: .9em; // 12.6
+      }
+
+      &__detail-desc {
+        font-size: .8em; // 11.2
+      }
+
+      //&__price-integer {
+      //  font-size: 1.2em; // 16.8
+      //}
+      //
+      //&__price-decimal {
+      //  font-size: .9em; // 12.6
+      //}
+      //
+      //&__origin-price-value {
+      //  font-size: .9em;
+      //}
+
+      &__soldout {
+        font-size: $--font-size-small;
+      }
+    }
+  }
+
+  &__block {}
+
+  &__block2 {}
+}

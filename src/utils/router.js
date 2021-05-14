@@ -20,7 +20,7 @@ function isRedundantNavigation(err) {
 /**
  * 跳转到指定路由地址（非 functional 组件使用该方法跳转路由）
  * @param {VueRouter} router 路由实例对象
- * @param {RouteConfig} config 目标路由配置信息
+ * @param {Object} config 目标路由配置信息
  */
 export function route(router, config) {
   const { to, url, replace } = config;

@@ -11,12 +11,12 @@ $--color-transition-base: color .2s cubic-bezier(.645, .045, .355, 1) !default;
 
 // Color
 // ----------------------------------------
-$--color-primary: #409eff !default;
+$--color-primary: #1989fa !default;
 $--color-white: #fff !default;
 $--color-black: #000 !default;
-$--color-success: #67c23a !default;
-$--color-warning: #e6a23c !default;
-$--color-danger: #f56c6c !default;
+$--color-success: #07c160 !default;
+$--color-warning: #ff976a !default;
+$--color-danger: #ee0a24 !default;
 $--color-info: #909399 !default;
 
 /// NeutralColor
@@ -86,7 +86,7 @@ $--border-base: $--border-width-base $--border-style-base $--border-color-base !
 $--border-radius-small: 2px !default;
 $--border-radius-base: 4px !default;
 $--border-radius-large: 8px !default;
-$--border-radius-circle: 100% !default;
+$--border-radius-max: 999px !default;
 $--border-radius-zero: 0 !default;
 
 // Typography
@@ -119,3 +119,40 @@ $--font-color-disabled-base: #bbb !default;
 $--category-title-height: 45px !default;
 $--category-icon-width: $--category-title-height !default;
 $--category-icon-height: $--category-title-height !default;
+
+// GoodsItem
+// ----------------------------------------
+$--goods-text-color: $--color-text-primary;
+$--goods-font-size: $--font-size-base;
+$--goods-thumb-background-color: $--color-neutral-8;
+$--goods-thumb-bottom: $--padding-small;
+$--goods-thumb-tag-dis: 2px;
+$--goods-background-color: rgba($--color-white, 80%);
+
+$--goods-tag-opacity: .8;
+
+$--goods-title-height: $--font-size-medium * 1.5;
+$--goods-title-line-height: $--font-size-medium * 1.5;
+$--goods-desc-color: $--color-text-regular;
+$--goods-desc-line-height: $--font-size-small * 1.25;
+
+$--goods-detail-padding: $--padding-small;
+$--goods-bottom-line-height: 20px;
+
+$--goods-price-font-size: $--font-size-small;
+$--goods-price-font-family: $--integer-font-family;
+
+$--goods-price-color: $--color-danger;
+$--goods-origin-price-color: $--color-text-secondary;
+$--goods-origin-price-font-size: $--font-size-extra-small;
+
+$--goods-member-color: lighten($--color-warning, 25%);
+$--goods-member-background: $--color-text-primary;
+
+$--goods-title-bar-padding: 10px;
+$--goods-title-bar-height: 40px;
+$--goods-title-bar-color: $--color-white;
+$--goods-title-bar-background: rgba($--color-text-primary, .6);
+
+// 加购图标
+$--goods-carticon-color: $--color-danger;

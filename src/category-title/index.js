@@ -4,6 +4,7 @@
 // created: 2021/5/8 17:54
 // ------------------------------------------------------------------------------
 
+import { Image, Icon } from 'vant';
 import { createNamespace, addUnit, isAbsoluteURL, isDataURL } from '../utils';
 import mixText from '../mixins/text';
 import mixSpacing from '../mixins/spacing';
@@ -126,8 +127,8 @@ export default createComponent({
 
     const iconContent = (type, place, shown, icon) => {
       const iconElement = type === ICON_TYPE.url
-                          ? (<van-image class={bem('image')} src={icon} fit="contain"/>)
-                          : (<van-icon class-prefix={this.iconPrefix} name={icon}/>);
+                          ? (<Image class={bem('image')} src={icon} fit="contain"/>)
+                          : (<Icon class-prefix={this.iconPrefix} name={icon}/>);
 
       return shown ? (
         <div class={bem(place)} style={this.iconStyle}>
