@@ -14,6 +14,8 @@ $--color-transition-base: color .2s cubic-bezier(.645, .045, .355, 1) !default;
 $--color-primary: #1989fa !default;
 $--color-white: #fff !default;
 $--color-black: #000 !default;
+$--color-gold: #ffd01e !default;
+
 $--color-success: #07c160 !default;
 $--color-warning: #ff976a !default;
 $--color-danger: #ee0a24 !default;
@@ -126,18 +128,23 @@ $--goods-text-color: $--color-text-primary;
 $--goods-font-size: $--font-size-base;
 $--goods-thumb-background-color: $--color-neutral-8;
 $--goods-thumb-bottom: $--padding-small;
-$--goods-thumb-tag-dis: 2px;
 $--goods-background-color: rgba($--color-white, 80%);
 
-$--goods-tag-opacity: .8;
+// 图片上方角标（如“HOT”、“NEW”、“热卖”）
+$--goods-thumb-tag-dis: 2px;
+$--goods-thumb-tag-opacity: .8;
 
-$--goods-title-height: $--font-size-medium * 1.5;
-$--goods-title-line-height: $--font-size-medium * 1.5;
+// 内容区标签集
+$--goods-tag-size: $--font-size-small;
+$--goods-tag-color: $--color-warning;
+$--goods-tag-background: rgba($--goods-tag-color, .2);
+
+// detail 内容区域
+$--goods-detail-padding: $--padding-extra-small;
+$--goods-bottom-line-height: 22px;
+$--goods-title-size: $--font-size-medium;
+$--goods-title-weight: $--font-weight-bold;
 $--goods-desc-color: $--color-text-regular;
-$--goods-desc-line-height: $--font-size-small * 1.25;
-
-$--goods-detail-padding: $--padding-small;
-$--goods-bottom-line-height: 20px;
 
 $--goods-price-font-size: $--font-size-small;
 $--goods-price-font-family: $--integer-font-family;
@@ -146,13 +153,17 @@ $--goods-price-color: $--color-danger;
 $--goods-origin-price-color: $--color-text-secondary;
 $--goods-origin-price-font-size: $--font-size-extra-small;
 
-$--goods-member-color: lighten($--color-warning, 25%);
+$--goods-member-color: lighten($--color-gold, 10%); // rgba($--color-gold, .6);
 $--goods-member-background: $--color-text-primary;
 
-$--goods-title-bar-padding: 10px;
+// 透明风格标题栏
+$--goods-title-bar-padding: $--padding-extra-small;
 $--goods-title-bar-height: 40px;
 $--goods-title-bar-color: $--color-white;
 $--goods-title-bar-background: rgba($--color-text-primary, .6);
 
 // 加购图标
 $--goods-carticon-color: $--color-danger;
+
+// 通栏风格
+

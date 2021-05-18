@@ -42,6 +42,8 @@ export default createComponent({
             unit: '盘',
             originPrice: 200,
             price: 158,
+            memberPrice: 120,
+            tags: ['热卖', { text: '单点不送', hot: false }],
             desc: '新疆大盘鸡，又名沙湾大盘鸡、辣子炒鸡，是20世纪80年代起源于新疆公路边饭馆的江湖菜，主要用鸡块和土豆块炒炖而成，还同新疆皮带面搭配食用。 [1]  色彩鲜艳、爽滑麻辣的鸡肉和软糯甜润的土豆，辣中有香、粗中带细，是餐桌上的佳品。',
             thumb: 'http://img.blibao.com/upload/550912/decorate/2020102710005912486-dpj_800x600.jpg'
           },
@@ -91,7 +93,7 @@ export default createComponent({
           attrs: {
             theme, // 列数传递给子级做特殊处理
             ...attrs, // 直接传递给子组件
-            ...item
+            data: item
           },
           on: { ...listeners }
         };
@@ -111,19 +113,26 @@ export default createComponent({
     // classes
     const classes = [
       bem(),
-      bem(theme)
+      bem([theme])
     ];
 
     let column = 1;
+    let direction = 'vertical';
     if (theme === 'base' || theme === 'col1') column = 1;
     if (theme === 'col2') column = 2;
     if (theme === 'col3') column = 3;
+    if (theme === 'block' || theme === 'block2') {
+      column = 1;
+      direction = 'horizontal';
+    }
 
     return (
       <Grid class={classes}
             border={false}
             column-num={column}
+            center={false}
             gutter={gutter}
+            direction={direction}
             style={Spacing}>
         {Children()}
       </Grid>

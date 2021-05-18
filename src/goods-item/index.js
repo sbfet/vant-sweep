@@ -5,9 +5,9 @@
 // ------------------------------------------------------------------------------
 
 import { Image, Icon, Tag, Stepper, GridItem } from 'vant';
-import { createNamespace, routeProps, route, isDef, noop, currency } from '../utils';
+import { createNamespace, routeProps, route, isDef, noop, currency, isPlainObject } from '../utils';
 import { stopPropagation } from '../utils/dom/event';
-import { GoodsData, GoodsItemData } from './shared';
+import { GoodsItemData } from './shared';
 import StepperTheme from './stepper';
 
 const [createComponent, bem] = createNamespace('goods-item');
@@ -21,7 +21,12 @@ export default createComponent({
   },
 
   props: {
-    ...GoodsData,
+    data: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
     ...GoodsItemData,
     ...routeProps
   },
@@ -49,13 +54,14 @@ export default createComponent({
   methods: {
 
     onClick(event) {
-      this.$emit('click', this.$props, event);
-      route(this.$router, this.$props);
+      const { to, url, replace } = this;
+      this.$emit('click', this.data, event);
+      route(this.$router, { to, url, replace });
     },
 
     onThumbClick(event) {
       stopPropagation(event);
-      this.$emit('click-thumb', this.$props, event);
+      this.$emit('click-thumb', this.data, event);
     },
 
     onChange(value, detail) {
@@ -73,10 +79,15 @@ export default createComponent({
   //
   // --------------------------------------------------------------------------
   render(h, context) {
-    const { title, desc, price, memberPrice, originPrice, tags, unit, currency: currencySymbol } = this;
-    const { thumb, thumbTag, thumbTagAlign, lazyLoad, theme } = this;
-    const { slots, $listeners, onThumbClick } = this;
+    const {
+      id, title, desc, thumb, tags,
+      unit, num, otherNum, min = 0, max, step = 1, soldout = false,
+      price, memberPrice, originPrice, currency: currencySymbol = '¥'
+    } = this.data;
+    const { thumbTag, thumbTagAlign, lazyLoad, theme, showTags } = this;
+    const { $listeners, onThumbClick } = this;
 
+    // 大图风格
     const bigTheme = theme === 'base' || theme === 'col1';
 
     // ----------------------------------------
@@ -107,7 +118,7 @@ export default createComponent({
 
       return (
         <div class={bem('thumb')} onClick={handler ? onThumbClick : noop}>
-          {slots.thumb ? (slots.thumb()) : ThumbHolder}
+          {ThumbHolder}
           {ThumbTag()}
         </div>
       );
@@ -118,29 +129,24 @@ export default createComponent({
     // ----------------------------------------
 
     function Title() {
-      const showLabel = (slots.title && slots.title()) || title || '-';
-
-      if (showLabel) {
-        return (
-          <div class={[bem('detail-title')]}>
-            {showLabel}
-          </div>
-        );
-      }
+      return (
+        <div class={[bem('detail-title')]}>
+          {title || '-'}
+        </div>
+      );
     }
 
     // ----------------------------------------
     // 商品描述
     // ----------------------------------------
+    const { showDesc } = this;
 
     function Desc() {
-      const showDesc = slots.desc || isDef(desc);
+      const canShowDesc = isDef(desc) && showDesc;
 
-      if (showDesc) {
+      if (canShowDesc) {
         return (
-          <div class={[bem('detail-desc')]}>
-            {slots.desc ? slots.desc() : desc}
-          </div>
+          <div class={[bem('detail-desc')]}>{desc}</div>
         );
       }
     }
@@ -150,17 +156,19 @@ export default createComponent({
     // ----------------------------------------
 
     function Tags(max = -1) {
-      const showTags = slots.tags || isDef(tags);
+      const canShowTags = isDef(tags) && showTags;
 
-      if (showTags) {
+      if (canShowTags) {
         const validTags = tags.slice(0, max === -1 ? tags.length : max);
 
         return (
           <div class={[bem('detail-tags')]}>
-            {slots.tags ? slots.tags() : (
+            {(
               validTags.map(tag => {
+                // 默认显示 hot 风格，可指定为普通灰色风格的 tag
+                const { text, hot } = isPlainObject(tag) ? tag : { text: tag, hot: true };
                 return (
-                  <div class={[bem('detail-tags--red')]}>{tag}</div>
+                  <div class={[bem('tag', { hot })]}>{text}</div>
                 );
               })
             )}
@@ -172,11 +180,8 @@ export default createComponent({
     // ----------------------------------------
     // 数量控制
     // ----------------------------------------
-    const { id, num, min, max, step, showStep, otherNum, soldout, cartIcon, showNum } = this;
-    const { buyCount, onChange, onCartIconClick } = this;
-
-    // 'col2', 'col3' 2列、3列风格不显示数量控制器（空间位置不足）
-    const canShowStepper = showStep && !soldout && ['col2', 'col3'].indexOf(theme) === -1;
+    const { showStep, cartIcon, showNum } = this;
+    const { buyCount, onCartIconClick } = this;
 
     // block、block2 通栏风格不显示加购数量，由控制器管理
     const canShowNum = showNum && ['block', 'block2'].indexOf(theme) === -1;
@@ -184,9 +189,12 @@ export default createComponent({
     // 当数量等于 0 时，隐藏输入数字和减按钮
     const isCanReduce = buyCount > 0;
 
-    // 当显示数量控制器时
+    // 显示数量控制器时（完全由用户控制数量控制器类型）
     function GoodsStepper() {
-      if (canShowStepper) {
+      // 售罄或隐藏控制器
+      if (showStep === 'none' || soldout) return;
+
+      if (showStep === 'step') {
         return (
           <div class={[bem('detail-step')]} onClick={e => e.stopPropagation()}>
             <Stepper name={id}
@@ -202,7 +210,7 @@ export default createComponent({
           </div>
         );
       }
-      else if (['col2', 'col3'].indexOf(theme) !== -1) {
+      else {
         return (
           <Icon class={bem('stepper-icon')} name={cartIcon} onClick={() => onCartIconClick(buyCount + 1)}/>
         );
@@ -236,7 +244,7 @@ export default createComponent({
       if (soldout) {
         return (
           <div class={[bem('soldout')]}>
-            已售罄
+            <Image src="https://lib-yhbc.oss-cn-hangzhou.aliyuncs.com/res/sweep/soldout.png" fit="cover" lazy-load={lazyLoad}/>
           </div>
         );
       }
@@ -246,9 +254,9 @@ export default createComponent({
     // 商品价格
     // ----------------------------------------
     const { trailingZeros, memberSymbol, showUnit } = this;
-    const showPrice = slots.price || isDef(price);
-    const showMemberPrice = (slots['member-price'] || isDef(memberPrice)) && this.showMemberPrice;
-    const showOriginPrice = (slots['origin-price'] || isDef(originPrice)) && this.showOriginPrice;
+    const showPrice = isDef(price);
+    const showMemberPrice = isDef(memberPrice) && this.showMemberPrice;
+    const showOriginPrice = isDef(originPrice) && this.showOriginPrice;
 
     function MemberPrice() {
       if (showMemberPrice) {
@@ -291,7 +299,7 @@ export default createComponent({
       if (showPrice) {
         return (
           <div class={bem('price')}>
-            {slots.price ? slots.price() : PriceContent()}
+            {PriceContent()}
           </div>
         );
       }
@@ -299,23 +307,13 @@ export default createComponent({
 
     function OriginPrice() {
       if (showOriginPrice) {
-        const slot = slots['origin-price'];
         const curPrice = currency(originPrice || 0, !trailingZeros);
 
         return (
           <div class={bem('origin-price')}>
-            <span class={bem('origin-price-value')}>{slot ? slot() : `${curPrice}`}</span>
+            <span class={bem('origin-price-value')}>{curPrice}</span>
           </div>
         );
-      }
-    }
-
-    function Footer() {
-      const slot = slots['origin-price'];
-
-      // 只有普通标题风格才能显示底部插槽内容
-      if (slot && bigTheme) {
-        return <div class={bem('footer')}>{slot()}</div>;
       }
     }
 
@@ -327,10 +325,10 @@ export default createComponent({
       // 半透明黑底风格
       if (theme === 'base') {
         return (
-          <div class={bem('detail-trans')}>
+          <div class={bem('detail-black')}>
             {Title()}
             {Tags(1)}
-            <div class={[bem('detail-trans-price')]}>
+            <div class={[bem('detail-black-price')]}>
               {Price()}
             </div>
           </div>
@@ -345,7 +343,7 @@ export default createComponent({
           {Tags()}
           {MemberPrice()}
           <div class={[bem('detail-bottom')]}>
-            <div>
+            <div class={[bem('price-wrap')]}>
               {Price()}
               {OriginPrice()}
             </div>
@@ -358,11 +356,13 @@ export default createComponent({
     }
 
     const classes = [
+      bem([theme]),
       bem({
         round: this.round,
         shadow: this.shadow,
         soldout: this.soldout,
-        transparent: theme === 'base'
+        black: theme === 'base',
+        transparent: this.transparent
       })
     ];
 
@@ -372,7 +372,6 @@ export default createComponent({
         {GoodsCartNum()}
         {SoldoutHold()}
         {ThemeTitleBar()}
-        {Footer()}
       </GridItem>
     );
   }

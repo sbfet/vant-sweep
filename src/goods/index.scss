@@ -10,77 +10,94 @@
 @include b(goods) {
   font-size: inherit;
 
-  &__col1, &__base {
+  &--col1, &--base {
     .sb-goods-item {
       &__detail-title {
         font-size: $--font-size-medium;
       }
+    }
+  }
 
+  &--base {
+    .sb-goods-item {
       &__soldout {
-        font-size: $--font-size-medium;
-        padding: $--padding-small $--padding-large;
+        top: 90px;
+        width: 100%;
+        max-width: 120px;
       }
     }
   }
 
-  &__col2 {
+  &--col1 {
     .sb-goods-item {
-
-      &__thumb {
-        height: 170px;
-      }
-
-      &__detail {
-        min-height: 60px;
-      }
-
-      &__detail-title {
-        font-size: $--font-size-base;
-      }
-
       &__soldout {
-        padding: $--padding-extra-small $--padding-base;
+        top: 120px;
+        width: 100%;
+        max-width: 120px;
       }
     }
   }
 
-  &__col3 {
+  &--col2 {
     .sb-goods-item {
+
       &__thumb {
-        height: 110px;
+        height: 160px;
       }
 
       &__detail {
-        min-height: 50px;
+        min-height: 40px;
       }
 
-      &__detail-title {
-        font-size: .9em; // 12.6
+      &__soldout {
+        top: 90px;
+        width: 100%;
+        max-width: 100px;
+      }
+    }
+  }
+
+  &--col3 {
+    .sb-goods-item {
+      &__thumb {
+        height: 120px;
+      }
+
+      &__detail {
+        min-height: 40px;
       }
 
       &__detail-desc {
-        font-size: .8em; // 11.2
+        font-size: $--font-size-extra-small;
       }
 
-      //&__price-integer {
-      //  font-size: 1.2em; // 16.8
-      //}
-      //
-      //&__price-decimal {
-      //  font-size: .9em; // 12.6
-      //}
-      //
-      //&__origin-price-value {
-      //  font-size: .9em;
-      //}
-
       &__soldout {
-        font-size: $--font-size-small;
+        top: 70px;
+        width: 100%;
+        max-width: 80px;
       }
     }
   }
 
-  &__block {}
+  &--block {
+    .sb-goods-item {
+      &__soldout {
+        left: 50px;
+        top: 55px;
+        width: 100%;
+        max-width: 80px;
+      }
+    }
+  }
 
-  &__block2 {}
+  &--block2 {
+    .sb-goods-item {
+      &__soldout {
+        left: 70px;
+        top: 70px;
+        width: 100%;
+        max-width: 100px;
+      }
+    }
+  }
 }

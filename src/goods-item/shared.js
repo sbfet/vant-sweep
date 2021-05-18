@@ -17,10 +17,7 @@ export const GoodsData = {
   price: [Number, String],
   memberPrice: [Number, String],
   originPrice: [Number, String],
-  currency: {
-    type: String,
-    default: '¥'
-  },
+  currency: { type: String, default: '¥' },
 
   // 购买数量（默认初始购买数量）
   num: {
@@ -54,8 +51,13 @@ export const GoodsData = {
 
 // 单个商品显示参数
 export const GoodsItemData = {
-  // 当前 item 在 Goods 容器中得到的列数
-  column: { type: Number, default: 1 },
+  // 单个商品数据
+  data: {
+    type: Object,
+    default() {
+      return {};
+    }
+  },
 
   // 是否呈现圆角容器
   round: { type: Boolean, default: true },
@@ -78,16 +80,21 @@ export const GoodsItemData = {
   // 是否保留末尾小数位的 0
   trailingZeros: { type: Boolean, default: true },
 
-  // 当2列、3列显示时，可自定义购物车加购图标
-  // 'add' | 'cart-circle' | 'shopping-cart'
-  cartIcon: { type: String, default: 'cart-circle' },
+  // 透明背景风格
+  transparent: { type: Boolean, default: false },
 
   // 是否在右上角显示加购数量
   // block、block2 通栏风格无效
   showNum: { type: Boolean, default: true },
 
-  // 是否显示原价
-  showMemberPrice: { type: Boolean, default: false },
+  // 是否显示商品标签
+  showTags: { type: Boolean, default: true },
+
+  // 是否显示商品简介
+  showDesc: { type: Boolean, default: true },
+
+  // 是否显示会员价
+  showMemberPrice: { type: Boolean, default: true },
 
   // 是否显示原价
   showOriginPrice: { type: Boolean, default: false },
@@ -95,8 +102,16 @@ export const GoodsItemData = {
   // 是否显示单位
   showUnit: { type: Boolean, default: false },
 
-  // 是否显示购买数量控制器
-  showStep: { type: Boolean, default: true },
+  // 数量控制器的类型（默认情况下会全部显示为图标类型）
+  // 'none'   - 隐藏，只能通过点击商品进入详情页进行选购
+  // 'icon'   - 购物车图标，点击触发事件来快捷选购
+  // 'step'   - 数量控制器，点击改变数量的同时，触发事件来快捷选购
+  // icon/step 都会在内部维护当前数量
+  showStep: { type: String, default: 'icon' },
+
+  // 当 showStep = icon 时，可自定义购物车加购图标（支持任意 vant icon）
+  // 'add' | 'cart-circle' | 'shopping-cart'
+  cartIcon: { type: String, default: 'cart-circle' },
 
   // 商品组件风格
   // 'base'   - 默认1列大图风格，标题栏透明黑色，展示信息有限

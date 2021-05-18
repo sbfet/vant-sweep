@@ -9,26 +9,32 @@
 @import "../style/mixins/ellipsis";
 
 @include b(goods-item) {
+  $B: &;
+
   width: 0;
   user-select: none;
 
   &--soldout {
-    filter: grayscale(90%);
-    opacity: .5;
+    %soldout {
+      filter: grayscale(80%);
+      opacity: .6;
+    }
+
+    #{$B}__thumb,
+    #{$B}__detail,
+    #{$B}__detail-black {
+      @extend %soldout;
+    }
   }
 
   &__soldout {
-    font-size: $--font-size-base;
+    width: 50%;
     position: absolute;
     left: 50%;
-    top: 35%;
-    color: $--goods-desc-color;
-    padding: $--padding-base $--padding-small;
-    white-space: nowrap;
-    background: fade($--color-white, 60%);
+    top: 45%;
     transform: translate(-50%, -50%);
-    border-radius: $--border-radius-max;
-    box-shadow: $--box-shadow-dark;
+    filter: grayscale(66%);
+    opacity: .5;
   }
 
   &__thumb {
@@ -48,7 +54,7 @@
     &-tag {
       position: absolute;
       bottom: $--goods-thumb-bottom;
-      opacity: $--goods-tag-opacity;
+      opacity: $--goods-thumb-tag-opacity;
       white-space: nowrap; // 保持角标文字不换行
 
       &--left {
@@ -93,7 +99,7 @@
     transform: translateY(-50%);
 
     .van-tag {
-      opacity: $--goods-tag-opacity;
+      opacity: $--goods-thumb-tag-opacity;
       margin-left: 2px;
     }
   }
@@ -109,22 +115,20 @@
 
     display: flex;
     flex-direction: column;
-    //overflow: hidden;
 
     &-title {
-      font-size: $--font-size-base;
-      font-weight: $--font-weight-bold;
-      max-height: $--goods-title-height;
-      line-height: $--goods-title-line-height;
-
-      @include ellipsis();
+      width: 100%;
+      font-size: $--goods-title-size;
+      font-weight: $--goods-title-weight;
+      line-height: 1.2;
+      @include multi-ellipsis(2);
     }
 
     &-desc {
-      font-size: $--font-size-small;
       color: $--goods-desc-color;
-      line-height: $--goods-desc-line-height;
-
+      font-size: $--font-size-small;
+      line-height: 1.2;
+      margin: $--padding-basic 0;
       @include multi-ellipsis(2);
     }
 
@@ -134,19 +138,24 @@
       align-items: center;
       padding: 5px 0;
 
-      &--red {
-        font-size: $--font-size-extra-small;
+      #{$B}__tag {
+        font-size: $--goods-tag-size;
         position: relative;
         display: inline-flex;
         align-items: center;
-        padding: 2px 4px;
-        color: $--color-danger;
-        border: 1px solid $--color-danger;
-        border-radius: 2px;
+        padding: 3px 5px;
+        border-radius: $--border-radius-base;
         line-height: 1;
+        color: $--color-info;
+        background-color: rgba($--color-info, .2);
+
+        &--hot {
+          color: $--goods-tag-color;
+          background-color: $--goods-tag-background;
+        }
       }
 
-      &--red + &--red {
+      #{$B}__tag + #{$B}__tag {
         margin-left: 2px;
       }
     }
@@ -164,6 +173,14 @@
     &-stepper {
       color: $--goods-carticon-color;
       font-size: 25px;
+      display: inline-flex;
+      align-items: flex-end;
+
+      #{$B}__stepper-icon {
+        &:active {
+          color: lighten($--goods-carticon-color, 10%);
+        }
+      }
     }
 
   }
@@ -172,28 +189,28 @@
     .van-grid-item__content {
       border-radius: $--border-radius-large;
 
-      .sb-goods-item__thumb {
+      #{$B}__thumb {
         overflow: hidden;
         border-radius: $--border-radius-large $--border-radius-large 0 0;
       }
     }
 
-    &.sb-goods-item--transparent {
+    &#{$B}--black {
       .van-grid-item__content {
-        .sb-goods-item__thumb {
+        #{$B}__thumb {
           border-radius: $--border-radius-large;
         }
 
-        .sb-goods-item__detail-trans {
+        #{$B}__detail-black {
           border-radius: 0 0 $--border-radius-large $--border-radius-large;
         }
       }
     }
   }
 
-  &--transparent {
+  &--black {
     .sb-goods-item__thumb-tag {
-      bottom: $--goods-thumb-bottom + 40px;
+      bottom: $--goods-thumb-bottom + 45px;
     }
   }
 
@@ -208,12 +225,79 @@
     padding: 0;
     box-sizing: border-box;
     background-color: $--goods-background-color;
-    //overflow: hidden;
   }
 
-  // 半透明标题风格
+  // 内容区半透明无背景色风格
   // --------------------------------------------------
-  &__detail-trans {
+  &--transparent {
+    .van-grid-item__content {
+      background-color: transparent !important;
+    }
+
+    #{$B}__detail {
+      padding: 0;
+
+      &-title {
+        padding-top: $--padding-extra-small * .5;
+      }
+    }
+
+    &#{$B}--round {
+      .van-grid-item__content {
+        #{$B}__thumb {
+          border-radius: $--border-radius-large !important;
+        }
+      }
+    }
+  }
+
+  // 通栏风格
+  // --------------------------------------------------
+  &--block, &--block2 {
+    .van-grid-item__content {
+      #{$B}__thumb {
+        margin: $--margin-extra-small;
+      }
+    }
+
+    &#{$B}--round {
+      .van-grid-item__content {
+        #{$B}__thumb {
+          border-radius: $--border-radius-large !important;
+        }
+      }
+    }
+
+    #{$B}__detail {
+      padding-left: 0;
+
+      &-title {
+        font-size: $--font-size-medium;
+      }
+    }
+  }
+
+  &--block {
+    .van-grid-item__content {
+      #{$B}__thumb {
+        width: 86px;
+        height: 86px;
+      }
+    }
+  }
+
+  &--block2 {
+    .van-grid-item__content {
+      #{$B}__thumb {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  }
+
+  // 半透明黑底标题风格
+  // --------------------------------------------------
+  &__detail-black {
     color: $--goods-title-bar-color;
     position: absolute;
     bottom: 0;
@@ -221,21 +305,21 @@
     width: 100%;
     background-color: $--goods-title-bar-background;
     box-sizing: border-box;
-    padding: 0 $--goods-title-bar-padding;
+    padding: $--goods-title-bar-padding;
 
     display: flex;
     align-items: center;
 
-    .sb-goods-item__detail-title {
+    #{$B}__detail-title {
       flex: 1;
     }
 
     &-price {
       padding-left: $--goods-title-bar-padding;
 
-      .sb-goods-item__price {
-        color: $--goods-price-color;
-      }
+      //#{$B}__price {
+      //  margin-top: 0;
+      //}
     }
   }
 
@@ -248,8 +332,8 @@
       font-size: $--goods-price-font-size;
       font-family: $--goods-price-font-family;
       text-align: center;
-      padding: 1px $--padding-base 0;
-      min-width: 30px;
+      padding: 1px $--padding-basic 0;
+      min-width: 25px;
     }
 
     &-price {
@@ -267,6 +351,11 @@
 
   // 原价、优惠价
   // --------------------------------------------------
+
+  &__price-wrap {
+    position: relative;
+    transform: translateY(10%);
+  }
 
   &__price {
     display: inline-block;

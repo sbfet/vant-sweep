@@ -5,7 +5,6 @@
 CategoryTitle 是区块相关的标题组件，一般与商品组件 Goods 组合使用。
 
 ### 引入
-需先加载 `vant` 的 `Image, Icon` 组件。
 
 ```js
 import Vue from 'vue';
@@ -78,13 +77,22 @@ Vue.use(CategoryTitle);
 
 ### Props
 
-| 参数 | 说明 | 类型 | 默认值 | | - | - | - | - | | title | 标题 | _string_ | - | | leftIcon | 标题左侧图标。可以是 url 或 icon 图标`（默认使用 vant icon）` | _string_ | - | |
-rightIcon | 标题右侧图标。 | _string_ | - | | iconPrefix | 使用 icon 时的类名前缀。 | _string_ | `van-icon` | | iconColor | 图标颜色。`（仅支持 icon 图标）` | _string_
-| `rgba(238,10,36,.6)` | | iconSize | 图标大小。`（仅支持 icon 图标）` | _number \| string_ | `20px` | | textPadding | 标题文本左右侧与图标之间的距离。 | _number \| string_
-| `5px` | | color | 标题文字颜色 | _string_ | - | | fontSize | 标题文字大小 | _number \| string_ | `14px` | | align | 标题内容对齐方式，可选值为 `left` `center` `right`，<br>
-同样也隐式支持其它的对齐方式如 `space-between` `space-around` 等。 | _string_ | `left` | | backgroundColor | 标题背景颜色 | _string_ | `transparent` | | marginTop | 标题外部顶部间距
-| _number \| string_ | `5px` | | marginBottom | 标题外部底部间距 | _number \| string_ | `5px` | | paddingLeft | 标题内部左侧边缘间距 | _number \| string_ | `10px` | |
-paddingRight | 标题内部右侧边缘间距 | _number \| string_ | `10px` |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| title | 标题 | _string_ | - |
+| leftIcon | 标题左侧图标。可以是 url 或 icon 图标`（默认使用 vant icon）` | _string_ | - |
+| rightIcon | 标题右侧图标。 | _string_ | - |
+| iconPrefix | 使用 icon 时的类名前缀。 | _string_ | `van-icon` |
+| iconColor | 图标颜色。`（仅支持 icon 图标）` | _string_ | `rgba(238,10,36,.6)` |
+| iconSize | 图标大小。`（仅支持 icon 图标）` | _number \| string_ | `20px` |
+| textPadding | 标题文本左右侧与图标之间的距离。 | _number \| string_ | `5px` | | color | 标题文字颜色 | _string_ | - |
+| fontSize | 标题文字大小 | _number \| string_ | `14px` |
+| align | 标题内容对齐方式，可选值为 `left` `center` `right`，<br>同样也隐式支持其它的对齐方式如 `space-between` `space-around` 等。 | _string_ | `left` |
+| backgroundColor | 标题背景颜色 | _string_ | `transparent` |
+| marginTop | 标题外部顶部间距 | _number \| string_ | `5px` |
+| marginBottom | 标题外部底部间距 | _number \| string_ | `5px` |
+| paddingLeft | 标题内部左侧边缘间距 | _number \| string_ | `10px` |
+| paddingRight | 标题内部右侧边缘间距 | _number \| string_ | `10px` |
 
 ### Events
 
