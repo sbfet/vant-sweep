@@ -1,7 +1,7 @@
 {
-  "name": "vant-sweep",
+  "name": "@sbfe/vant-sweep",
   "version": "1.0.0",
-  "description": "",
+  "description": "Mobile UI Components built on Vant",
   "main": "lib/vant-sweep.js",
   "style": "lib/index.css",
   "typings": "types/index.d.ts",
@@ -16,7 +16,8 @@
     "build": "vant-cli build",
     "release": "vant-cli release",
     "test:coverage": "open test/coverage/index.html",
-    "build-site": "vant-cli build-site && gh-pages -d site"
+    "build-site": "vant-cli build-site && gh-pages -d site",
+    "pub": "npm run build && npm publish --access=public"
   },
   "author": "yinhefe",
   "license": "MIT",
