@@ -27,7 +27,7 @@ Vue.use(GoodsItem);
 ### 商品分成1列
 
 ```html
-<sb-goods theme="col1" :data-source="dataSource" :limit="1" :tags="['热卖',{text:'单点不送',hot:false}]"/>
+<sb-goods theme="col1" :data-source="dataSource" :limit="1"/>
 ```
 
 ### 商品分成2列
@@ -37,6 +37,8 @@ Vue.use(GoodsItem);
 ```
 
 ### 商品分成3列
+
+通过 `shadow` 关闭阴影，且通过 `transparent` 开启无背景透明模式。
 
 ```html
 <sb-goods theme="col3" :data-source="dataSource" :limit="3" :shadow="false" transparent/>
@@ -53,8 +55,7 @@ Vue.use(GoodsItem);
               v-if="active===0"
               show-origin-price
               show-unit
-              :shadow="false"
-              :tags="['热卖',{text:'单点不送',hot:false}]"/>
+              :shadow="false"/>
     <sb-goods theme="block2"
               :data-source="dataSource"
               :limit="5"
@@ -74,41 +75,42 @@ export default {
       items: [{ text: '通栏风格' }, { text: '大图风格' }],
       dataSource: [
         {
-          id: (Math.random() * 10000000 >> 0).toString(),
+          id: '10001',
           title: '大盘鸡套餐',
           unit: '盘',
           originPrice: 200,
           price: 158,
           memberPrice: 120,
+          tags: ['热卖', { text: '单点不送', hot: false }],
           desc: '新疆大盘鸡，又名沙湾大盘鸡、辣子炒鸡，是20世纪80年代起源于新疆公路边饭馆的江湖菜，主要用鸡块和土豆块炒炖而成，还同新疆皮带面搭配食用。 [1]  色彩鲜艳、爽滑麻辣的鸡肉和软糯甜润的土豆，辣中有香、粗中带细，是餐桌上的佳品。',
           thumb: 'http://img.blibao.com/upload/550912/decorate/2020102710005912486-dpj_800x600.jpg'
         },
         {
-          id: (Math.random() * 10000000 >> 0).toString(),
+          id: '10002',
           title: '金桔柠檬茶',
           unit: '杯',
           price: 16,
           thumb: 'http://img.blibao.com/upload/550912/%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E5%A4%B9/2020102714502819530-%E9%87%91%E6%A1%94%E8%9C%9C%E6%9F%9A_800x600.jpg'
         },
         {
-          id: (Math.random() * 10000000 >> 0).toString(),
+          id: '10003',
           title: '美味海草碟',
           unit: '碟',
           price: 12,
           thumb: 'http://img.blibao.com/upload/550912/decorate/2020102711512552932-hq_800x600.jpg'
         },
         {
-          id: (Math.random() * 10000000 >> 0).toString(),
+          id: '10004',
           title: '商品名称最多1行多余将换行',
           price: 23
         },
         {
-          id: (Math.random() * 10000000 >> 0).toString(),
+          id: '10005',
           title: '商品名称最多1行多余将换行',
           price: 24
         },
         {
-          id: (Math.random() * 10000000 >> 0).toString(),
+          id: '10006',
           title: '商品名称最多1行多余将换行',
           price: 25
         }
@@ -189,3 +191,9 @@ export default {
 | click  | 点击商品空白区域时触发 | _event: MouseEvent_ |
 | click-thumb  | 点击商品图片时触发 | _event: MouseEvent_ |
 | change  | 当加购数量发生改变时触发 | _value, detail:{name:string}_ |
+
+## 使用说明
+
+### 注意事项
+
+`Goods`、`GoodsItem` 组件由 `Grid`、`GridItem` 继承实现，目前由于 `GridItem` 依赖父级的逻辑，`GoodsItem` 暂时无法单独使用，必须做为 `Goods` 子级使用。

@@ -47,8 +47,8 @@
     justify-content: center;
 
     &-icon {
-      font-size: 48px;
-      color: $--color-warning;
+      font-size: 36px;
+      color: $--color-text-placeholder;
     }
 
     &-tag {
@@ -238,7 +238,7 @@
       padding: 0;
 
       &-title {
-        padding-top: $--padding-extra-small * .5;
+        padding-top: $--padding-extra-small;
       }
     }
 
@@ -269,10 +269,14 @@
     }
 
     #{$B}__detail {
-      padding-left: 0;
+      padding: $--padding-extra-small 0;
+    }
 
-      &-title {
-        font-size: $--font-size-medium;
+    &#{$B}--transparent {
+      #{$B}__detail {
+        &-title {
+          padding-top: 0;
+        }
       }
     }
   }

@@ -37,7 +37,7 @@ export default createComponent({
       default() {
         return [
           {
-            id: (Math.random() * 10000000 >> 0).toString(),
+            id: '10001',
             title: '大盘鸡套餐',
             unit: '盘',
             originPrice: 200,
@@ -48,31 +48,31 @@ export default createComponent({
             thumb: 'http://img.blibao.com/upload/550912/decorate/2020102710005912486-dpj_800x600.jpg'
           },
           {
-            id: (Math.random() * 10000000 >> 0).toString(),
+            id: '10002',
             title: '金桔柠檬茶',
             unit: '杯',
             price: 16,
             thumb: 'http://img.blibao.com/upload/550912/%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E5%A4%B9/2020102714502819530-%E9%87%91%E6%A1%94%E8%9C%9C%E6%9F%9A_800x600.jpg'
           },
           {
-            id: (Math.random() * 10000000 >> 0).toString(),
+            id: '10003',
             title: '美味海草碟',
             unit: '碟',
             price: 12,
             thumb: 'http://img.blibao.com/upload/550912/decorate/2020102711512552932-hq_800x600.jpg'
           },
           {
-            id: (Math.random() * 10000000 >> 0).toString(),
+            id: '10004',
             title: '商品名称最多1行多余将换行',
             price: 23
           },
           {
-            id: (Math.random() * 10000000 >> 0).toString(),
+            id: '10005',
             title: '商品名称最多1行多余将换行',
             price: 24
           },
           {
-            id: (Math.random() * 10000000 >> 0).toString(),
+            id: '10006',
             title: '商品名称最多1行多余将换行',
             price: 25
           }
